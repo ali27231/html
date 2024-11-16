@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحه خوش آمدید</title>
+    <link href="https://fonts.ir/font/lalezar" rel="stylesheet">
+    <link href="https://fonts.ir/font/iran-sans" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #e0e0e0, #ffffff);
+            font-family: 'Vazir', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            pointer-events: none;
+            animation: animateBackground 10s linear infinite;
+        }
+
+        @keyframes animateBackground {
+            0% { background: rgba(255, 255, 255, 0.1); }
+            50% { background: rgba(255, 255, 255, 0.3); }
+            100% { background: rgba(255, 255, 255, 0.1); }
+        }
+
+        img {
+            max-width: 300px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: zoomIn 1s ease;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+
+        h1 {
+            margin: 20px 0;
+            font-size: 32px;
+            color: #333;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+            animation: slideIn 1s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .update-message {
+            margin: 10px 0;
+            font-size: 20px;
+            color: #555;
+            animation: fadeIn 1s ease;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        button {
+            padding: 12px 24px;
+            font-size: 18px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            font-family: 'Lalezar', sans-serif;
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 0.5s;
+            z-index: 0;
+        }
+
+        button:hover::after {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        button span {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation"></div>
+    <img src="https://uploadkon.ir/uploads/c58616_24لوگو-پروژه-سلمان-توییتر.png" alt="لوگو">
+    <h1>خوش آمدید!</h1>
+    <div class="update-message">سرور در حال بروزرسانی است، لطفاً صبور باشید!</div>
+    <button onclick="openPreview()"><span>پیش نمایش نسخه توسعه</span></button>
+
+    <script>
+        function openPreview() {
+            const newWindow = window.open("", "_blank");
+            newWindow.document.write(`
+                <html>
+                <head>
+                        <title>پیش نمایش نسخه توسعه</title>
+                        <style>
+                            body {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
+                                height: 100vh;
+                                margin: 0;
+                                background: linear-gradient(135deg, #e0e0e0, #ffffff);
+                                font-family: 'Vazir', sans-serif;
+                            }
+                            button {
+                                padding: 12px 24px;
+                                font-size: 18px;
+                                color: white;
+                                background-color: #007bff;
+                                border: none;
+                                border-radius: 5px;
+                                cursor: pointer;
+                                margin: 10px;
+                                font-family: 'Lalezar', sans-serif;
+                            }
+                            button:hover {
+                                background-color: #0056b3;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <h1>پیش نمایش نسخه توسعه</h1>
+                        <button>Client</button>
+                        <button>Server</button>
+                        <button>API</button>
+                    </body>
+                </html>
+            `);
+        }
+    </script>
+</body>
+</html>
